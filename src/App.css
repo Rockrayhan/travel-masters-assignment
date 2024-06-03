@@ -13,3 +13,11 @@
     width: 30px;
     border-radius: 5px;
   }
+
+
+  /* profile */
+
+  .profile-img {
+    height: 150px;
+    width: 180px;
+  }

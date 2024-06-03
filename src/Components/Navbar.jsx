@@ -5,6 +5,8 @@ import { AuthContext } from '../provider/AuthProvider';
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
+
+
   return (
     <div className="navbar bg-orange-400 mb-10 p-4 shadow-lg">
       <div className="navbar-start">
@@ -15,10 +17,10 @@ const Navbar = () => {
             </svg>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><Link to='/home'>Home</Link></li>
+            <li><Link to='/'>Home</Link></li>
             <li><Link to='/about'>About</Link></li>
             <li><Link to='/contact'>Contact</Link></li>
-            <li><Link to='/'>All Products</Link></li>
+            <li><Link to='/products'>All Products</Link></li>
             <li><Link to='/add-product'>Add Products</Link></li>
             <li><Link to='/dashboard'>Dashboard</Link></li>
           </ul>
@@ -27,10 +29,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li><Link to='/home'>Home</Link></li>
+          <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
-          <li><Link to='/'>All Products</Link></li>
+          <li><Link to='/products'>All Products</Link></li>
           <li><Link to='/add-product'>Add Products</Link></li>
           <li><Link to='/dashboard'>Dashboard</Link></li>
         </ul>

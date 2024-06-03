@@ -18,6 +18,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
+import Profile from './pages/Profile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,11 +26,11 @@ const router = createBrowserRouter([
     element: <App/>,
     children:[
       {
-        path:"/home",
+        path:"",
         element: <Home/>
       },
       {
-        path:"",
+        path:"/products",
         element: <AllProducts/>,
         loader: ()=> fetch("http://localhost:3000/bags")
       },
@@ -38,10 +39,6 @@ const router = createBrowserRouter([
         element: <ProductDetails/>,
         loader: ({params})=> 
           fetch(`http://localhost:3000/bags/${params.id}`),
-      },
-      {
-        path:"/dashboard",
-        element: <PrivateRoute><Dashboard/></PrivateRoute>
       },
       {
         path:"/add-product",
@@ -68,6 +65,14 @@ const router = createBrowserRouter([
       {
         path:"/register",
         element: <Register/>
+      },
+      {
+        path:"/dashboard",
+        element: <PrivateRoute><Dashboard/></PrivateRoute>
+      },
+      {
+        path:"/profile",
+        element: <Profile/>
       },
     ]
   },
