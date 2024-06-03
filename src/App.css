@@ -21,3 +21,22 @@
     height: 150px;
     width: 180px;
   }
+
+
+  /* dashboard */
+
+  .dashboard-nav a {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    /* flex-direction: column; */
+    
+  }
+
+  .dashboard-nav a:hover {
+    background-color: rgb(255, 201, 135);
+  }

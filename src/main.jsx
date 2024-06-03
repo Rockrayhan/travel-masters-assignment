@@ -41,10 +41,6 @@ const router = createBrowserRouter([
           fetch(`http://localhost:3000/bags/${params.id}`),
       },
       {
-        path:"/add-product",
-        element: <AddProduct/>
-      },
-      {
         path:"/products/edit/:id",
         element: <EditProduct/>,
         loader: ({params})=> 
@@ -68,12 +64,21 @@ const router = createBrowserRouter([
       },
       {
         path:"/dashboard",
-        element: <PrivateRoute><Dashboard/></PrivateRoute>
+        element: <PrivateRoute><Dashboard/></PrivateRoute>,
+        children:[ 
+          {
+            path:"/dashboard/profile",
+            element: <Profile/>
+          },
+
+          {
+            path:"/dashboard/add-blog",
+            element: <AddProduct/>
+          },
+
+        ]
       },
-      {
-        path:"/profile",
-        element: <Profile/>
-      },
+    
     ]
   },
 ]);
