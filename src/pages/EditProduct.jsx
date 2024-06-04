@@ -6,10 +6,8 @@ const EditProduct =  () => {
   const product = useLoaderData();
 
 
-  const [name, setName] = useState(product.name);
-  const [price, setPrice] = useState(product.price);
-  const [brand, setBrand] = useState(product.brand);
-  const [id, setId] = useState(product.id);
+  const [title, setTitle] = useState(product.title);
+  const [uName, setUname] = useState(product.uName);
   const [description, setDescription] = useState(product.description);
   const [img_url, setImg_url] = useState(product.img_url);
 
@@ -20,20 +18,19 @@ const EditProduct =  () => {
     e.preventDefault();
 
     const form = e.target;
-    const id = form.id.value;
-    const name = form.name.value;
-    const brand = form.brand.value;
+    const title = form.title.value;
+    const uName = form.uName.value;
     const description = form.description.value;
     const img_url = form.img_url.value;
-    const price = form.price.value;
+    
 
-    const data = { id, name, brand, description, img_url, price };
+    const data = {  title, uName, description, img_url };
 
-    if (!window.confirm("Add the product?")) {
-        return; // Exit if the user cancels
-      }
+    // if (!window.confirm("Add the product?")) {
+    //     return; // Exit if the user cancels
+    //   }
 
-    await fetch(`http://localhost:3000/bags/${product.id}`, {
+    await fetch(`http://localhost:5000/blogs/${product._id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -49,9 +46,7 @@ const EditProduct =  () => {
 
     // console.log(data);
 
-    // if (!window.confirm("Add the product?")) {
-    //   return; // Exit if the user cancels
-    // }
+ 
   };
 
   return (
@@ -61,7 +56,7 @@ const EditProduct =  () => {
       </div>
 
       <h1 className="text-orange-500 text-3xl font-bold text-center mb-10">
-        Edit Product {id}
+        Update Blog 
       </h1>
 
       <form
@@ -70,42 +65,43 @@ const EditProduct =  () => {
         action=""
         method="post"
       >
+        <label htmlFor=""> Blog Title : </label>
         <input
           type="text"
-          placeholder={name}
-          name="name"
+          placeholder={title}
+          name="title"
           className="input border-2  w-2/3 border-orange-500"
-          value={name}
-        onChange={(e) => setName(e.target.value)}
+          value={title}
+        onChange={(e) => setTitle(e.target.value)}
         />
         <br />
+
+
+    <label htmlFor=""> Author:  </label>
         <input
           type="text"
-          placeholder={brand}
-          name="brand"
+          placeholder={uName}
+          name="uName"
           className="input border-2  w-2/3 border-orange-500"
-          value={brand}
-        onChange={(e) => setBrand(e.target.value)}
+          value={uName}
+        onChange={(e) => setUname(e.target.value)}
         />
         <br />
-        <input
-          type="text"
-          placeholder={price}
-          name="price"
-          className="input border-2  w-2/3 border-orange-500"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <br />
-        <input
+
+    <label htmlFor=""> Blog Description: </label>
+        <textarea
           type="text"
           placeholder={description}
           name="description"
-          className="input border-2  w-2/3 border-orange-500"
+          className="input border-2 h-36 w-2/3 border-orange-500"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-        />
+        >
+        </textarea>
+
         <br />
+
+        Blog Image url: 
         <input
           type="text"
           placeholder="Image URL"
@@ -115,15 +111,7 @@ const EditProduct =  () => {
           onChange={(e) => setImg_url(e.target.value)}
         />
         <br />
-        <input
-          type="text"
-          placeholder={id}
-          name="id"
-          className="input border-2  w-2/3 border-orange-500"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-        />
-        <br />
+
 
         <input
           type="submit"

@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const SingleProduct = ({ item, onDelete }) => {
@@ -10,12 +11,12 @@ const SingleProduct = ({ item, onDelete }) => {
   // }
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/bags/${_id}`, {
+    await fetch(`http://localhost:5000/blogs/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        toast.success('deleted Successfully') ;
         onDelete(_id);
       });
   };
