@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import SingleProduct from "../Components/SingleProduct";
 
 const AllProducts = () => {
@@ -7,7 +6,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState([])
 
   useEffect( () => {
-    fetch("http://localhost:3000/bags")
+    fetch("http://localhost:3000/blogs")
     .then( (res) => res.json() )
     .then ( (data) => setProducts(data)) ;
   }, []) ;

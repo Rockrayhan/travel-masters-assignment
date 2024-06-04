@@ -19,6 +19,7 @@ import Register from './pages/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 import Profile from './pages/Profile.jsx';
+import MyProducts from './pages/MyProducts.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,19 +33,19 @@ const router = createBrowserRouter([
       {
         path:"/products",
         element: <AllProducts/>,
-        loader: ()=> fetch("http://localhost:3000/bags")
+        // loader: ()=> fetch("http://localhost:5000/blogs")
       },
       {
         path:"/products/:id",
         element: <ProductDetails/>,
         loader: ({params})=> 
-          fetch(`http://localhost:3000/bags/${params.id}`),
+          fetch(`http://localhost:5000/blogs/${params.id}`),
       },
       {
         path:"/products/edit/:id",
         element: <EditProduct/>,
         loader: ({params})=> 
-          fetch(`http://localhost:3000/bags/${params.id}`),
+          fetch(`http://localhost:5000/blogs/${params.id}`),
       },
       {
         path:"/about",
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
           {
             path:"/dashboard/add-blog",
             element: <AddProduct/>
+          },
+
+          {
+            path:"/dashboard/my-blogs",
+            element: <MyProducts/>,
           },
 
         ]

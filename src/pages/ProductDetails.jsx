@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const ProductDetails = () => {
   const product = useLoaderData();
-  const { id, name, description, img_url, brand, price } = product;
+  const { _id, uName, description, img_url, title } = product;
 
   return (
     <div className="container mx-auto p-6">
@@ -17,15 +17,9 @@ const ProductDetails = () => {
             />
           </div>
           <div className="md:w-1/2 p-6">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{name}</h1>
-            <h2 className="text-2xl text-gray-700 mb-2">Brand: <span className="text-gray-900 font-semibold">{brand}</span></h2>
-            <h3 className="text-2xl text-orange-600 mb-6">Price: ${price}</h3>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
+            <h2 className="text-2xl text-gray-700 mb-2">Author <span className="text-gray-900 font-semibold">{uName}</span></h2>
             <p className="text-lg text-gray-800 mb-6">{description}</p>
-            <div className="flex justify-end">
-              <button className="btn bg-orange-400 text-white py-3 px-6 rounded-lg shadow-lg custom-btn">
-                Buy Now
-              </button>
-            </div>
           </div>
         </div>
       </div>

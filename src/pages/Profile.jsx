@@ -25,9 +25,6 @@ const Profile = () => {
       if (password) {
         await updatePassword(user, password);
       }
-      if (!window.confirm("Are you sure?")) {
-        return; // Exit if the user cancels
-      }
       setUser({ ...user, displayName, photoURL });
       setMessage("Profile updated successfully");
     } catch (error) {

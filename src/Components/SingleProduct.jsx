@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleProduct = ({ item, onDelete }) => {
-  const { id, name, brand, description, img_url, price } = item;
+  const { _id, uName, title, description, img_url } = item;
   // console.log(id);
 
   // if (window.confirm(" are you sure you want to Delete ? ")) {
@@ -10,13 +10,13 @@ const SingleProduct = ({ item, onDelete }) => {
   // }
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:3000/bags/${id}`, {
+    await fetch(`http://localhost:5000/bags/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        onDelete(id);
+        onDelete(_id);
       });
   };
 
@@ -45,33 +45,32 @@ const SingleProduct = ({ item, onDelete }) => {
           className="card-title"
           style={{ fontSize: "1.5rem", fontWeight: "bold" }}
         >
-          {" "}
-          {name}{" "}
+          
+          {title}
         </h2>
         <div className="flex gap-4">
-          <h3 className="text-lg text-orange-900"> Brand: {brand} </h3>
-          <h3 className="text-lg text-orange-900"> Price: {price}$ </h3>
+          <h3 className="text-lg text-orange-900"> Author: {uName} </h3>
+          
         </div>
         <p> {description} </p>
         <div className=" flex gap-2 justify-start">
-          <Link to={`/products/${id}`}>
-            {" "}
+          <Link to={`/products/${_id}`}>
+            
             <button className="btn bg-orange-300 border-0">
-              {" "}
-              See Details{" "}
-            </button>{" "}
+              See Details
+            </button>
           </Link>
           <button onClick={handleDelete} className="btn bg-red-500 border-0 ">
-            {" "}
-            Delete{" "}
+            
+            Delete
           </button>
 
-          <Link to={`/products/edit/${id}`}>
-            {" "}
+          <Link to={`/products/edit/${_id}`}>
+            
             <button className="btn bg-yellow-300 border-0 ">
-              {" "}
+              
               Edit
-            </button>{" "}
+            </button>
           </Link>
 
         </div>

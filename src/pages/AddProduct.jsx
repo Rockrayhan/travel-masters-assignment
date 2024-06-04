@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from "../provider/AuthProvider";
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
+
   const formSubmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
-    const id = form.id.value;
-    const name = form.name.value;
-    const brand = form.brand.value;
+    const title = form.title.value;
+    const uName = form.uName.value;
     const description = form.description.value;
     const img_url = form.img_url.value;
-    const price = form.price.value;
+    
 
-    const data = { id, name, brand, description, img_url, price };
+    const data = {  title, uName, description, img_url };
     // console.log(data);
 
     if (!window.confirm("Add the product?")) {
       return; // Exit if the user cancels
     }
 
-    await fetch("http://localhost:3000/bags", {
+    await fetch("http://localhost:5000/blogs", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -50,31 +52,26 @@ const AddProduct = () => {
         action=""
         method="post"
       >
+        
         <input
           type="text"
-          placeholder="Name"
-          name="name"
+          placeholder="Title"
+          name="title"
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
-        <input
-          type="text"
-          placeholder="Brand"
-          name="brand"
-          className="input border-2  w-2/3 border-orange-500"
-        />
+
+
+        <textarea name="description" placeholder="Blog Description" className="input border-2 h-36 w-2/3 border-orange-500"></textarea>
         <br />
+        
+
+    
         <input
           type="text"
-          placeholder="Price"
-          name="price"
-          className="input border-2  w-2/3 border-orange-500"
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Description"
-          name="description"
+          placeholder="Author Name"
+          name="uName"
+          value={user?.displayName}
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
@@ -82,13 +79,6 @@ const AddProduct = () => {
           type="text"
           placeholder="Image URL"
           name="img_url"
-          className="input border-2  w-2/3 border-orange-500"
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="ID"
-          name="id"
           className="input border-2  w-2/3 border-orange-500"
         />
         <br />
