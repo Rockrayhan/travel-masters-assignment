@@ -1,8 +1,18 @@
-# React + Vite
+### Live site link: https://travel-masters-f69d0.web.app/
+### server link:  https://travel-masters-server.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##### N B : site is running in locally but server hosting is not working on render / vercel 
 
-Currently, two official plugins are available:
+#### Key Features:
+* This is a Blog website 
+* Authentication with firebase 
+* user can see his/her blogs, update and delete them. 
+* user can update his/her profile
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+#### How to run: 
+* git clone the client repository 
+* use commands on the root directory `npm install` & `npm run dev`
+* git clone the server repository 
+* use commands on the root directory `npm install` & `npm run dev`
+* in the index.js file uncomment the DB_URI credential at line 24 and use it to connect db. 
