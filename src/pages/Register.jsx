@@ -11,6 +11,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     const form = new FormData(e.currentTarget);
 
     const displayName = form.get("displayName");
@@ -18,26 +19,39 @@ const Register = () => {
     const email = form.get("email");
     const password = form.get("password");
 
+    console.log("Form data:", { displayName, photoURL, email, password });
+
     try {
-      await createUser(email, password, displayName, photoURL).then((data) => {
-        if (data?.user?.email) {
-          const userInfo = {
-            email: data?.user?.email,
-            name: displayName,
-          };
-          fetch("http://localhost:5000/user", {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify(userInfo),
-          })
-          .then((res) => res.json())
-          .then ( (data) => console.log(data)) ;
+      // Create a new user
+      const userData = await createUser(email, password, displayName, photoURL);
+      console.log("User created:", userData);
+
+      if (userData?.user?.email) {
+        const userInfo = {
+          email: userData.user.email,
+          name: displayName,
+          photoURL:photoURL,
+        };
+        console.log("User info to be sent:", userInfo);
+
+        const response = await fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        });
+        const responseData = await response.json();
+        console.log("Response from server:", responseData);
+
+        if (response.ok) {
+          navigate(location?.state ? location.state : "/");
+        } else {
+          throw new Error(responseData.message || "Failed to register user");
         }
-      });
-      navigate(location?.state ? location.state : "/");
+      }
     } catch (error) {
+      console.error("Error during registration:", error);
       setError(error.message);
     }
   };
@@ -57,8 +71,8 @@ const Register = () => {
             },
             body: JSON.stringify(userInfo),
           })
-          .then((res) => res.json())
-          .then ( (data) => console.log(data)) ;
+            .then((res) => res.json())
+            .then((data) => console.log(data));
         }
       });
       navigate(location?.state ? location.state : "/");
