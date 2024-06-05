@@ -6,7 +6,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState([])
 
   useEffect( () => {
-    fetch("http://localhost:3000/blogs")
+    fetch("http://localhost:5000/blogs")
     .then( (res) => res.json() )
     .then ( (data) => setProducts(data)) ;
   }, []) ;
@@ -20,7 +20,7 @@ const AllProducts = () => {
   console.log(products);
   return (
     <div>
-      <h1 className="text-orange-500 text-3xl font-bold text-center mb-5">We Have {products.length} Products</h1>
+      <h1 className="text-orange-500 text-3xl font-bold text-center mb-5">We Have {products.length} Blogs</h1>
 
       <div className="grid grid-cols-3 gap-4 mx-32">
        

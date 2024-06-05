@@ -1,9 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { updatePassword, updateProfile } from "firebase/auth";
+
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState();
+
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:5000/user/${user?.email}`)
@@ -11,6 +18,9 @@ const UserProfile = () => {
       .then((data) => setUserInfo(data));
   }, [user]);
 
+
+
+//   update profile
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -35,6 +45,30 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
+
+
+
+//   update password
+
+
+const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match");
+      return;
+    }
+    try {
+        if (password) {
+            await updatePassword(user, password);
+            setMessage("Password updated successfully");
+        }
+    } catch (error) {
+        setMessage(error.message);
+    }
+};
+
+
+
 
   const demoImg =
     "https://i.pinimg.com/280x280_RS/e1/08/21/e10821c74b533d465ba888ea66daa30f.jpg";
@@ -113,9 +147,10 @@ const UserProfile = () => {
           </form>
 
 
-          <form action="">
-            
-          <div className="form-control mb-3">
+          <form className="center" onSubmit={handleUpdateProfile}>
+            <div>
+                
+          <div className="form-control mb-3 mt-10">
               <label className="label" htmlFor="password">
                 <span className="label-text">New Password</span>
               </label>
@@ -123,9 +158,8 @@ const UserProfile = () => {
                 type="password"
                 id="password"
                 name="password"
-                //   value={password}
                 placeholder="Enter New Password"
-                //   onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input input-bordered w-full"
               />
             </div>
@@ -137,21 +171,21 @@ const UserProfile = () => {
                 type="password"
                 id="confirmPassword"
                 name="confirmPassword"
-                //   value={confirmPassword}
                 placeholder="Confirm New Password"
-                //   onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 className="input input-bordered w-full"
               />
             </div>
 
             <div className="center">
               <button type="submit" className="btn custom-btn w-2/5">
-                Update Profile
+                Update Password
               </button>
+            </div>
             </div>
           </form>
 
-          {/* <div className="my-7">
+          <div className="my-7">
               {message && (
                 <span>
                   <div role="alert" className="alert bg-orange-500">
@@ -172,7 +206,7 @@ const UserProfile = () => {
                   </div>
                 </span>
               )}
-            </div> */}
+            </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar bg-orange-400 mb-10 p-4 shadow-lg">
+    <div className="navbar bg-orange-300 mb-10 p-4 shadow-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -31,7 +31,7 @@ const Navbar = () => {
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
           <li><Link to='/contact'>Contact</Link></li>
-          <li><Link to='/products'>All Products</Link></li>
+          <li><Link to='/products'>All Blogs</Link></li>
           <li><Link to='/dashboard'>Dashboard</Link></li>
         </ul>
       </div>

@@ -25,8 +25,8 @@ const Dashboard = () => {
 
 
     
-          <Link to="/dashboard/profile" className="mb-3">
-            <span className="hover:text-gray-300">Profile</span>
+          <Link to="#" className="mb-3">
+            <span className="hover:text-gray-300">Settings</span>
           </Link>
 
           
