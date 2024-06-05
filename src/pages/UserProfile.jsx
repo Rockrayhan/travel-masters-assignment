@@ -11,37 +11,33 @@ const UserProfile = () => {
       .then((data) => setUserInfo(data));
   }, [user]);
 
-
-
   const handleSubmit = (e) => {
-    e.preventDefault() ;
-    const form = e.target ;
-    const name = form.name.value ;
-    const photoURL = form.photoURL.value ;
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
 
     const userData = {
-        name,
-        email: userInfo?.email,
-        photoURL
-    } ;
+      name,
+      email: userInfo?.email,
+      photoURL,
+    };
 
     console.log(userData);
 
     fetch(`http://localhost:5000/user/${userInfo?.email}`, {
-    method: "PATCH",
-    headers: {
-        "Content-Type" : "application/json",
-    },
-    body: JSON.stringify(userData)
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
     })
-    .then( (res) => res.json())
-    .then((data) => console.log(data))
-
-  } ;
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   const demoImg =
     "https://i.pinimg.com/280x280_RS/e1/08/21/e10821c74b533d465ba888ea66daa30f.jpg";
-
 
   return (
     <div className="container mx-auto p-5">
@@ -50,7 +46,11 @@ const UserProfile = () => {
         <h3 className="mb-2">Name: {userInfo?.name}</h3>
         <h3 className="mb-5">Email: {userInfo?.email}</h3>
         <div>
-          <img className="profile-img" src={userInfo?.photoURL || demoImg} alt="" />
+          <img
+            className="profile-img"
+            src={userInfo?.photoURL || demoImg}
+            alt=""
+          />
         </div>
       </div>
 
@@ -59,7 +59,6 @@ const UserProfile = () => {
           <h1 className="text-xl font-bold mb-5">Change Information</h1>
 
           <form onSubmit={handleSubmit}>
-
             <div className="form-control mb-3">
               <label className="label" htmlFor="displayName">
                 <span className="label-text">Name</span>
@@ -90,8 +89,6 @@ const UserProfile = () => {
               />
             </div>
 
-
-
             <div className="form-control mb-3">
               <label className="label" htmlFor="photoURL">
                 <span className="label-text">Photo URL</span>
@@ -106,7 +103,19 @@ const UserProfile = () => {
                 className="input input-bordered w-full"
               />
             </div>
-            <div className="form-control mb-3">
+            
+            <div className="center">
+              <button type="submit" className="btn custom-btn w-2/5">
+                Update Profile
+              </button>
+            </div>
+
+          </form>
+
+
+          <form action="">
+            
+          <div className="form-control mb-3">
               <label className="label" htmlFor="password">
                 <span className="label-text">New Password</span>
               </label>
@@ -134,9 +143,12 @@ const UserProfile = () => {
                 className="input input-bordered w-full"
               />
             </div>
-            <button type="submit" className="btn custom-btn w-full">
-              Update Profile
-            </button>
+
+            <div className="center">
+              <button type="submit" className="btn custom-btn w-2/5">
+                Update Profile
+              </button>
+            </div>
           </form>
 
           {/* <div className="my-7">

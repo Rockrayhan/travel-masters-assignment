@@ -41,7 +41,7 @@ const TopBloggers = () => {
         <div className="col-span-1">
             <div className='grid grid-cols-2 gap-6'>
                 {/* each blogger card */}
-                <div className='col-span-1 bg-white '>
+                <div className='col-span-1 bg-orange-100 '>
                     <div className='p-5 flex flex-col gap-5 rounded-md border border-sky-950'>
                         <img src="https://d2w1le1t5r6d3w.cloudfront.net/Team/_1200x801_crop_center-center_82_line/DSC06531.jpg" alt="" />
                         <h1 className='text-2xl font-semibold'> Bear Grylls </h1>
@@ -50,7 +50,7 @@ const TopBloggers = () => {
                     </div>
                 </div>
                 {/* each blogger card */}
-                <div className='col-span-1 bg-white '>
+                <div className='col-span-1 bg-slate-100 '>
                     <div className='p-5 flex flex-col gap-5 rounded-md border border-sky-950'>
                         <img src="https://st2.depositphotos.com/4290619/11455/i/450/depositphotos_114557454-stock-photo-young-traveler-wearing-a-hat.jpg" alt="" />
                         <h1 className='text-2xl font-semibold'> Jessy Pinkman </h1>
@@ -59,7 +59,7 @@ const TopBloggers = () => {
                     </div>
                 </div>
                 {/* each blogger card */}
-                <div className='col-span-1 bg-white '>
+                <div className='col-span-1 bg-slate-100 '>
                     <div className='p-5 flex flex-col gap-5 rounded-md border border-sky-950'>
                         <img src="https://media.cntraveller.com/photos/611be9694e09f53b43732aa4/master/w_1600%2Cc_limit/adam-driver-tracks-film-still-conde-nast-traveller-5oct15-rex_.jpg" alt="" />
                         <h1 className='text-2xl font-semibold'> Billy Butcher </h1>
@@ -68,7 +68,7 @@ const TopBloggers = () => {
                     </div>
                 </div>
                 {/* each blogger card */}
-                <div className='col-span-1 bg-white '>
+                <div className='col-span-1 bg-orange-100 '>
                     <div className='p-5 flex flex-col gap-5 rounded-md border border-sky-950'>
                         <img src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period1/2014/01/04/Photos/ben--621x414.jpg" alt="" />
                         <h1 className='text-2xl font-semibold'> Walter Mitty </h1>
