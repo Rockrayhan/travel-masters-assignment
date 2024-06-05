@@ -20,6 +20,7 @@ import AuthProvider from './provider/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 import Profile from './pages/Profile.jsx';
 import MyProducts from './pages/MyProducts.jsx';
+import UserProfile from './pages/UserProfile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
           {
             path:"/dashboard/profile",
             element: <Profile/>
+          },
+          {
+            path:"",
+            element: <UserProfile/>
           },
 
           {

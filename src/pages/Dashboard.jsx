@@ -8,11 +8,9 @@ const Dashboard = () => {
         <h2 className="text-2xl font-bold mb-5">Dashboard</h2>
         <nav className="dashboard-nav">
 
-
-          <Link to="/dashboard/profile" className="mb-3">
-            <span className="hover:text-gray-300">Profile</span>
+        <Link to='' className="mb-3">
+            <span className="hover:text-gray-300">My Profile</span>
           </Link>
-
 
 
           <Link to="/dashboard/my-blogs" className="mb-3">
@@ -26,10 +24,12 @@ const Dashboard = () => {
           </Link>
 
 
-
-          <Link className="mb-3">
-            <span className="hover:text-gray-300">Support</span>
+    
+          <Link to="/dashboard/profile" className="mb-3">
+            <span className="hover:text-gray-300">Profile</span>
           </Link>
+
+          
 
 
         </nav>
