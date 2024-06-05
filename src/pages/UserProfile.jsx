@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const UserProfile = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
@@ -12,9 +12,37 @@ const UserProfile = () => {
   }, [user]);
 
 
-  console.log(userInfo);
+
+  const handleSubmit = (e) => {
+    e.preventDefault() ;
+    const form = e.target ;
+    const name = form.name.value ;
+    const photoURL = form.photoURL.value ;
+
+    const userData = {
+        name,
+        email: userInfo?.email,
+        photoURL
+    } ;
+
+    console.log(userData);
+
+    fetch(`http://localhost:5000/user/${userInfo?.email}`, {
+    method: "PATCH",
+    headers: {
+        "Content-Type" : "application/json",
+    },
+    body: JSON.stringify(userData)
+    })
+    .then( (res) => res.json())
+    .then((data) => console.log(data))
+
+  } ;
+
   const demoImg =
     "https://i.pinimg.com/280x280_RS/e1/08/21/e10821c74b533d465ba888ea66daa30f.jpg";
+
+
   return (
     <div className="container mx-auto p-5">
       <div className="rounded-lg shadow-lg p-5">
@@ -29,7 +57,9 @@ const UserProfile = () => {
       <div className="center my-10">
         <div className="border border-3 p-5 rounded-lg shadow-lg w-3/5">
           <h1 className="text-xl font-bold mb-5">Change Information</h1>
-          <form>
+
+          <form onSubmit={handleSubmit}>
+
             <div className="form-control mb-3">
               <label className="label" htmlFor="displayName">
                 <span className="label-text">Name</span>
@@ -37,13 +67,31 @@ const UserProfile = () => {
               <input
                 type="text"
                 id="displayName"
-                name="displayName"
-                //   value={displayName}
-                placeholder={userInfo?.name}
+                name="name"
+                defaultValue={userInfo?.name}
+                // placeholder={userInfo?.name}
                 //   onChange={(e) => setDisplayName(e.target.value)}
                 className="input input-bordered w-full"
               />
             </div>
+
+            <div className="form-control mb-3">
+              <label className="label" htmlFor="displayName">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                defaultValue={userInfo?.email}
+                disabled
+                // placeholder={userInfo?.name}
+                //   onChange={(e) => setDisplayName(e.target.value)}
+                className="input input-bordered w-full"
+              />
+            </div>
+
+
+
             <div className="form-control mb-3">
               <label className="label" htmlFor="photoURL">
                 <span className="label-text">Photo URL</span>
@@ -52,7 +100,7 @@ const UserProfile = () => {
                 type="text"
                 id="photoURL"
                 name="photoURL"
-                //   value={photoURL}
+                defaultValue={userInfo?.photoURL}
                 placeholder="Enter new photo URL"
                 //   onChange={(e) => setPhotoURL(e.target.value)}
                 className="input input-bordered w-full"
