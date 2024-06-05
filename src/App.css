@@ -40,3 +40,17 @@
   .dashboard-nav a:hover {
     background-color: rgb(255, 201, 135);
   }
+
+
+
+  /* Type Section */
+
+.type-card{
+  height: 60%;
+  
+}
+
+.type-icon{
+  color: brown;
+  height: 20%;
+}

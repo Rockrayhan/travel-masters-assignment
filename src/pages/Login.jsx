@@ -25,7 +25,23 @@ const Login = () => {
   
     const handleGoogleLogin = async () => {
       try {
-        await googleSignIn();
+        await googleSignIn().then((data) => {
+          if (data?.user?.email) {
+            const userInfo = {
+              email: data?.user?.email,
+              name: data?.user?.displayName,
+            };
+            fetch("http://localhost:5000/user", {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            })
+            .then((res) => res.json())
+            .then ( (data) => console.log(data)) ;
+          }
+        });
         navigate(location?.state ? location.state : "/");
       } catch (error) {
         console.log(error);

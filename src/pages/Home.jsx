@@ -1,9 +1,14 @@
 import React from 'react';
+import Banner from '../Components/Banner';
+import Types from '../Components/Types';
+import TopBloggers from '../Components/TopBloggers';
 
 const Home = () => {
     return (
         <div>
-          <h1> Home </h1>  
+          <Banner/>
+          <Types/>
+          <TopBloggers/>
         </div>
     );
 };
